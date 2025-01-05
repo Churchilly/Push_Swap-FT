@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:37:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/03 06:46:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:44:23 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	insert(int value, t_stack *stack)
 	new->value = value;
 	new->next = stack->top;
 	stack->top = new;
+	stack->size = stack->size + 1;
 }
 
 void	swap(t_stack *stack)
@@ -50,6 +51,9 @@ void	push(t_stack *stack_take, t_stack *stack_push)
 	stack_take->top = stack_take->top->next;
 	taken->next = stack_push->top;
 	stack_push->top = taken;
+	stack_take->size = stack_take->size - 1;
+	stack_push->size = stack_push->size + 1;
+	
 }
 
 void	rotate(t_stack *stack)

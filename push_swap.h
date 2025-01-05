@@ -14,6 +14,7 @@ typedef struct s_node
 typedef struct s_stack
 {
 	t_node *top;
+	int		size;
 }			t_stack;
 
 
@@ -29,5 +30,8 @@ char	**ft_split(char const *s, char c);
 int		error(char *message, t_stack *a);
 
 void	insert_input(int argc, char **argv, t_stack *a);
+
+void	ft_qsort(int arr[], int low, int high);
+void	sort_stacks(t_stack *a, t_stack *b);
 
 #endif
