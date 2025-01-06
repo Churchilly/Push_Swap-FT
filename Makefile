@@ -1,12 +1,12 @@
 NAME = test
 
-SRCS =	*.c
-OBJ = $(SRCS:.c=.o)
+SRCS =	$(wildcard *.c)
+OBJ = $(patsubst %.c, %.o, $(SRCS))
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	cc -o $(NAME) $(OBJ)
 
 clean:
 	$(RM) $(OBJ)
