@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:37:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/05 15:44:23 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:55:31 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	swap(t_stack *stack)
 	t_node	*first;
 	t_node	*second;
 	
+	printf("Swap: %c\n", stack->name);
 	if (!stack->top || !stack->top->next)
 		return ;
 	first = stack->top;
@@ -45,6 +46,7 @@ void	push(t_stack *stack_take, t_stack *stack_push)
 {
 	t_node	*taken;
 	
+	printf("pushto: %c\n", stack_push->name);
 	if (!stack_take->top)
 		return ;
 	taken = stack_take->top;
@@ -61,6 +63,7 @@ void	rotate(t_stack *stack)
 	t_node	*first;
 	t_node	*last;
 	
+	printf("rotate: %c\n", stack->name);
 	if (!stack->top || !stack->top->next)
 		return ;
 	first = stack->top;
@@ -76,6 +79,8 @@ void	reverse_rotate(t_stack *stack)
 {
 	t_node	*prev;
 	t_node	*curr;
+	
+	printf("reverse rotate: %c\n", stack->name);
 	if (!stack->top || !stack->top->next)
 		return ;
 	prev = NULL;

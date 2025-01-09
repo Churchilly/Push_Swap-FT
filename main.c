@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/05 20:46:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:45:15 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int main(int argc, char *argv[])
 	b.top = NULL;
 	a.size = 0;
 	b.size = 0;
+	a.name = 'a';
+	b.name = 'b';
 	insert_input(argc, argv, &a);
-	sort_stacks(&a,&b);
+	solve(&a,&b);
 
 	head = a.top;
 	while (head)
