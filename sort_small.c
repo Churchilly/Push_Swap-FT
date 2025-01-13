@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:39:25 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/13 16:12:07 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:28:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sort_small_b(t_stack *a, t_stack *b)
 void	sort_small(t_stack *a, t_stack *b)
 {
 	int	ret;
-	
+
 	if (a->size <= 6)
 	{
 		sort_small_a(a, b);
