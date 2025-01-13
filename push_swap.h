@@ -47,8 +47,9 @@ void	insert_input(int argc, char **argv, t_stack *a);
 void	ft_qsort(int arr[], int low, int high);
 void	sort_stacks(t_stack *a, t_stack *b);
 
-void	assemble(t_stack *a, t_stack *b);
-void	divide_half(t_stack *a, t_stack *b);
+void	assemble(t_stack *a, t_stack *b, int size);
+int		divide_half_a(t_stack *a, t_stack *b);
+int		divide_half_b(t_stack *a, t_stack *b);
 bool	is_sorted(t_stack *stack);
 
 void	sort_2(t_stack *stack);
@@ -56,6 +57,7 @@ void	sort_3(t_stack *stack);
 void	rev_sort_2(t_stack *stack);
 void	rev_sort_3(t_stack *stack);
 void	sort_small(t_stack *a, t_stack *b);
+void	sort_small_a(t_stack *a, t_stack *b);
 void	solve(t_stack *a, t_stack *b);
 int	find_median(t_stack *stack);
 

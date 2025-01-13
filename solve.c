@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:37:03 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/09 18:07:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:12:28 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,24 @@ void	sort_stacks(t_stack *a, t_stack *b)
 	
 	if (a->size <= 5)
 	{
-		sort_small(a, b);
+		sort_small_a(a, b);
 		return ;
 	}
 	pivot = find_median(a);
-	printf("size: %d median:%d\n",a->size, pivot);
 	partition(a, b, pivot);
-	sort_stacks(a, b);
+	sort_small_a(a, b);
 	while (b->size > 0)
 		push(b, a);
 }
 
 void	solve(t_stack *a, t_stack *b)
 {
-	if (!is_sorted(a) && a->size <= 6)
+	if (a->size == 1 || is_sorted(a))
+		return ;
+	if (a->size <= 10)
+	{
 		sort_small(a, b);
+		return ;
+	}
 	sort_stacks(a, b);
-	//while (!is_sorted(a))
-	//{
-	//}
 }

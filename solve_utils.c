@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:02:32 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/09 17:36:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,61 @@ bool	is_sorted(t_stack *stack)
 	return (true);
 }
 
-void	divide_half(t_stack *a, t_stack *b)
+int	divide_half_a(t_stack *a, t_stack *b)
 {
 	t_node	*head;
-	int	median;
-	int	size;
+	int		median;
+	int		size;
+	int		ret;
 	
+	ret = 0;	
+	if (a->size <= 3)
+		return (0);
 	median = find_median(a);
-	printf("med:%d\n", median);
 	size = a->size;
 	while (size--)
 	{
 		head = a->top;
 		if (head->value < median)
+		{
+			ret++;
 			push(a, b);
+		}
 		else
 			rotate(a);
 	}
+	return (ret);
 }
 
-void	assemble(t_stack *a, t_stack *b)
+int	divide_half_b(t_stack *a, t_stack *b)
 {
-	while (b->size)
+	t_node	*head;
+	int		median;
+	int		size;
+	int		ret;
+	
+	ret = 0;	
+	if (b->size <= 3)
+		return (0);
+	median = find_median(b);
+	size = b->size;
+	while (size--)
+	{
+		head = b->top;
+		if (head->value > median)
+		{
+			ret++;
+			push(b, a);
+		}
+		else
+			rotate(b);
+	}
+	return (ret);
+}
+
+void	assemble(t_stack *a, t_stack *b, int size)
+{
+	while (size--)
 	{
 		push(b, a);
 	} 
@@ -69,6 +102,7 @@ int	find_median(t_stack *stack)
 		i++;
 	}
 	ft_qsort(buffer, 0, stack->size - 1);
-	printf("{%d}\n",buffer[stack->size / 2]);
-	return (buffer[stack->size / 2]);
+	if (stack->size <= 6)
+		return (buffer[stack->size / 2]);
+	return (buffer[stack->size - 5]);
 }
