@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:37:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/09 13:55:31 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/14 22:57:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,24 @@ void	insert(int value, t_stack *stack)
 
 	new = malloc(sizeof(t_node));
 	if (!new)
-		error("malloc error", stack);
+		input_error("malloc error", stack);
 	new->value = value;
 	new->next = stack->top;
 	stack->top = new;
 	stack->size = stack->size + 1;
 }
 
-void	swap(t_stack *stack)
+void	swap(t_stack *stack, int op)
 {
 	t_node	*first;
 	t_node	*second;
 	
-	printf("Swap: %c\n", stack->name);
+	if (op == SA)
+		write(1, "sa\n", 3);
+	else if (op == SB)
+		write(1, "sb\n", 3);
+	else if (op == SS)
+		write(1, "ss\n", 3);
 	if (!stack->top || !stack->top->next)
 		return ;
 	first = stack->top;
@@ -42,11 +47,14 @@ void	swap(t_stack *stack)
 	stack->top = second;
 }
 
-void	push(t_stack *stack_take, t_stack *stack_push)
+void	push(t_stack *stack_take, t_stack *stack_push, int op)
 {
 	t_node	*taken;
 	
-	printf("pushto: %c\n", stack_push->name);
+	if (op == PA)
+		write(1, "pa\n", 3);
+	else
+		write(1, "pb\n", 3);
 	if (!stack_take->top)
 		return ;
 	taken = stack_take->top;
@@ -58,12 +66,17 @@ void	push(t_stack *stack_take, t_stack *stack_push)
 	
 }
 
-void	rotate(t_stack *stack)
+void	rotate(t_stack *stack, int op)
 {
 	t_node	*first;
 	t_node	*last;
 	
-	printf("rotate: %c\n", stack->name);
+	if (op == RA)
+		write(1, "ra\n", 3);
+	else if (op == RB)
+		write(1, "rb\n", 3);
+	else if (op == RR)
+		write(1, "rr\n", 3);
 	if (!stack->top || !stack->top->next)
 		return ;
 	first = stack->top;
@@ -75,12 +88,17 @@ void	rotate(t_stack *stack)
 	last->next = first;
 }
 
-void	reverse_rotate(t_stack *stack)
+void	reverse_rotate(t_stack *stack, int op)
 {
 	t_node	*prev;
 	t_node	*curr;
 	
-	printf("reverse rotate: %c\n", stack->name);
+	if (op == RRA)
+		write(1, "rra\n", 3);
+	else if (op == RRB)
+		write(1, "rrb\n", 3);
+	else if (op == RRR)
+		write(1, "rrr\n", 3);
 	if (!stack->top || !stack->top->next)
 		return ;
 	prev = NULL;

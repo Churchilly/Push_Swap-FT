@@ -21,9 +21,9 @@ int	ft_atoi(const char *str, t_stack *a)
 	{
 		num = (num * 10) + (*str - '0');
 		if (num * sign > INT_MAX)
-			error("Input must be smaller than INT_MAX", a);
+			input_error("Input must be smaller than INT_MAX", a);
 		if (num * sign < INT_MIN)
-			error("Input must be biffer than INT_MIN", a);
+			input_error("Input must be biffer than INT_MIN", a);
 		str++;
 	}
 	return ((int)(num * sign));

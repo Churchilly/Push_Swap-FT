@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 03:59:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/03 07:13:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:36:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ static void	push_numbers(char *input, t_stack *a)
 	
 	splitted = ft_split(input, ' ');
 	if (!splitted)
-		error("split error", NULL);
+		input_error("split error", NULL);
 	i = 0;
 	while (splitted[i])
 		i++;
 	while (--i >= 0)
 	{
 		if (!is_num(*splitted))
-			error("all must be number", a);
+			input_error("all must be number", a);
 		num = ft_atoi(splitted[i], a);
 		if (is_num_exist(num, a))
-			error("numbers must be different than each other", a);
+			input_error("numbers must be different than each other", a);
 		insert(num, a);
 	}
 }
@@ -72,7 +72,7 @@ void	insert_input(int argc, char **argv, t_stack *a)
 	int	num;
 	
 	if (argc < 2)
-		error("Input must be more than zero", NULL);
+		input_error("Input must be more than zero", NULL);
 	else if (argc == 2)
 		push_numbers(argv[1], a);
 	else
@@ -80,10 +80,10 @@ void	insert_input(int argc, char **argv, t_stack *a)
 		while (--argc > 0)
 		{
 			if (!is_num(argv[argc]))
-				error("all must be number", a);
+				input_error("all must be number", a);
 			num = ft_atoi(argv[argc], a);
 			if (is_num_exist(num, a))
-				error("numbers must be different than each other", a);
+				input_error("numbers must be different than each other", a);
 			insert(num, a);
 		}
 	}
