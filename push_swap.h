@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+# define NULL_OP 0
 # define PA 1
 # define SA 2
 # define RA 3
@@ -46,30 +47,40 @@ void	push(t_stack *stack_take, t_stack *stack_push, int op);
 void	rotate(t_stack *stack, int op);
 void	reverse_rotate(t_stack *stack, int op);
 
+void	double_swap(t_stack *a, t_stack *b);
+void	double_rotate(t_stack *a, t_stack *b);
+void	double_reverse_rotate(t_stack *a, t_stack *b);
+
 int		ft_atoi(const char *str, t_stack *a);
 char	**ft_split(char const *s, char c);
 
-int		input_error(char *message, t_stack *a);
+void	input_error(char *message, t_stack *a);
+void	process_error(char *message, t_stack *a, t_stack *b, t_moves *moves);
 
 void	insert_input(int argc, char **argv, t_stack *a);
 
 void	ft_qsort(int arr[], int low, int high);
 
-void	assemble(t_stack *a, t_stack *b, int size);
-int		divide_a(t_stack *a, t_stack *b);
-int		divide_b(t_stack *a, t_stack *b);
+void	sort_small(t_stack *a, t_stack *b, t_moves *moves);
+void	sort_small_a(t_stack *a, t_stack *b, t_moves *moves);
+void	sort_small_b(t_stack *a, t_stack *b, t_moves *moves);
+
+void	sort_2_a(t_stack *a, t_stack *b, t_moves *moves);
+void	sort_3_a(t_stack *a, t_stack *b, t_moves *moves);
+void	rev_sort_2_b(t_stack *a, t_stack *b, t_moves *moves);
+void	rev_sort_3_b(t_stack *a, t_stack *b, t_moves *moves);
+
+int		find_median(t_stack *stack);
+int		divide_a(t_stack *a, t_stack *b, t_moves *moves);
+int		divide_b(t_stack *a, t_stack *b, t_moves *moves);
+void	assemble(t_stack *a, t_stack *b, int size, t_moves *moves);
+
 bool	is_sorted(t_stack *stack);
 bool	is_rev_sorted(t_stack *stack);
-
-void	sort_2_a(t_stack *a, t_stack *b);
-void	sort_3_a(t_stack *a, t_stack *b);
-void	rev_sort_2(t_stack *a, t_stack *b);
-void	rev_sort_3(t_stack *a, t_stack *b);
-void	sort_small(t_stack *a, t_stack *b);
-void	sort_small_a(t_stack *a, t_stack *b);
-void	sort_small_b(t_stack *a, t_stack *b);
 void	solve(t_stack *a, t_stack *b);
-int	find_median(t_stack *stack);
 void	free_moves(t_moves *moves);
+void	add_move(t_moves *moves, int move, t_stack *a, t_stack *b);
+void	pop_move(t_node **move_list);
+void	make_move(t_stack *a, t_stack *b, t_moves *moves);
 
 #endif

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_operations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:37:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/14 22:57:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:45:25 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void	insert(int value, t_stack *stack)
 {
@@ -94,11 +95,11 @@ void	reverse_rotate(t_stack *stack, int op)
 	t_node	*curr;
 	
 	if (op == RRA)
-		write(1, "rra\n", 3);
+		write(1, "rra\n", 4);
 	else if (op == RRB)
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 	else if (op == RRR)
-		write(1, "rrr\n", 3);
+		write(1, "rrr\n", 4);
 	if (!stack->top || !stack->top->next)
 		return ;
 	prev = NULL;

@@ -6,13 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:55:56 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/14 18:42:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:24:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_2_a(t_stack *a, t_stack *b)
+void	sort_2_a(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int	first;
 	int	second;
@@ -21,9 +21,9 @@ void	sort_2_a(t_stack *a, t_stack *b)
 	second = a->top->next->value;
 
 	if (first > second)
-		swap(a);
+		add_move(moves, SA, a, b);
 }
-void	sort_3_a(t_stack *a, t_stack *b)
+void	sort_3_a(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int first;
 	int second;
@@ -34,23 +34,23 @@ void	sort_3_a(t_stack *a, t_stack *b)
 	third = a->top->next->next->value;
 	if (second > first && second > third && third > first) // 132
 	{
-		swap(a); // -> 312
-		rotate(a); // -> 123
+		add_move(moves, SA, a, b);
+		add_move(moves, RA, a, b);
 	}
 	else if (second > first && second > third && first > third) // 231
-		reverse_rotate(a); // -> 123
+		add_move(moves, RRA, a, b);
 	else if (first > second && first > third && third > second) // 312
-		rotate(a); // -> 123
+		add_move(moves, RA, a, b);
 	else if (first > second && first > third && second > third) // 321
 	{
-		rotate(a); // -> 213
-		swap(a); // -> 123
+		add_move(moves, RA, a, b);
+		add_move(moves, SA, a, b);
 	}
 	else if (third > first && third > second && first > second) // 213
-		swap(a); // -> 123
+		add_move(moves, SA, a, b);
 }
 
-void	rev_sort_2_b(t_stack *a, t_stack *b)
+void	rev_sort_2_b(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int first;
 	int second;
@@ -58,10 +58,10 @@ void	rev_sort_2_b(t_stack *a, t_stack *b)
 	first = b->top->value;
 	second = b->top->next->value;
 	if (first < second)
-		swap(b);
+		add_move(moves, SB, a, b);
 }
 
-void	rev_sort_3_b(t_stack *a, t_stack *b)
+void	rev_sort_3_b(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int	first;
 	int	second;
@@ -72,18 +72,19 @@ void	rev_sort_3_b(t_stack *a, t_stack *b)
 	third = b->top->next->next->value;
 	if (first > second && first > third && third > second) // 312
 	{
-		reverse_rotate(b); // -> 231
-		swap(b);
+		add_move(moves, RRB, a, b);
+		add_move(moves, SB, a, b);
 	}
 	if (second > first && second > third && third > first) // 132
-		rotate(b); // -> 321
+		add_move(moves, RB, a, b);
+
 	if (second > first && second > third && first > third) // 231
-		swap(b); // ->321
+		add_move(moves, SB, a, b);
 	if (third > first && third > second && second > first) // 123
 	{
-		swap(b); // -> 213
-		reverse_rotate(b); // -> 321
+		add_move(moves, SB, a, b);
+		add_move(moves, RRB, a, b);
 	}
 	if (third > first && third > second && first > second) // 213
-		reverse_rotate(b); // -> 321
+		add_move(moves, RRB, a, b);
 }
