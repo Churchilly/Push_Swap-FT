@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 06:28:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/16 18:16:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:59:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,6 @@
 #include "push_swap.h"
 #include <unistd.h>
 #include <stdlib.h>
-
-void	free_moves(t_node *moves)
-{
-	t_node	*tmp;
-	t_node	*head;
-
-	head = moves;
-	while (head)
-	{
-		tmp = head->next;
-		free(head);
-		head = tmp;
-	}
-	moves = NULL;
-}
-
-void	free_stacks(t_stack *a, t_stack *b)
-{
-	t_node	*tmp;
-	t_node	*head;
-
-	if (a)
-	{
-		head = a->top;
-		while (head)
-		{
-			tmp = head->next;
-			free(head);
-			head = tmp;
-		}
-	}
-	if (b)
-	{
-		head = b->top;
-		while (head)
-		{
-			tmp = head->next;
-			free(head);
-			head = tmp;
-		}
-	}
-	a = NULL;
-	b = NULL;
-}
 
 void	input_error(char *message, t_stack *a)
 {

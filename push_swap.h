@@ -64,7 +64,6 @@ void	assemble(t_stack *a, t_stack *b, int size, t_node *moves);
 
 bool	is_sorted(t_stack *stack);
 bool	is_rev_sorted(t_stack *stack);
-void	free_moves(t_node *moves);
 void	add_move(t_node *moves, int move, t_stack *a, t_stack *b);
 
 void	print_moves(t_node *moves);

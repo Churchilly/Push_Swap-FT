@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 00:03:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:52:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 	insert_input(argc, argv, &a);
 	solve(&a,&b, &moves);
 	print_moves(&moves);
-	//free_moves(&moves);
 	head = a.top;
 	while (head)
 	{
@@ -44,4 +43,5 @@ int main(int argc, char *argv[])
 		head = head->next;
 	}
 	free_stacks(&a, &b);
+	free_moves(&moves);
 }

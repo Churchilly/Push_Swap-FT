@@ -1,41 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_utils.c                                      :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 17:51:42 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 00:53:57 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/01/17 01:57:35 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/01/17 01:58:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
-bool	is_sorted(t_stack *stack)
+void	free_stacks(t_stack *a, t_stack *b)
 {
+	t_node	*tmp;
 	t_node	*head;
 
-	head = stack->top;
-	while (head->next)
+	if (a)
 	{
-		if (head > head->next)
-			return (false);
-		head = head->next;
+		head = a->top;
+		while (head)
+		{
+			tmp = head->next;
+			free(head);
+			head = tmp;
+		}
 	}
-	return (true);
+	if (b)
+	{
+		head = b->top;
+		while (head)
+		{
+			tmp = head->next;
+			free(head);
+			head = tmp;
+		}
+	}
+	a = NULL;
+	b = NULL;
 }
 
-bool	is_rev_sorted(t_stack *stack)
+void	free_moves(t_node *moves)
 {
+	t_node	*tmp;
 	t_node	*head;
 
-	head = stack->top;
-	while (head->next)
+	if (!moves)
+		return ;
+	head = moves->next;
+	while (head)
 	{
-		if (head < head->next)
-			return (false);
+		tmp = head;
 		head = head->next;
+		free(tmp);
 	}
-	return (true);
 }

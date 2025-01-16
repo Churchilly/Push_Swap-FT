@@ -5,86 +5,110 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 15:55:56 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/16 19:54:50 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/01/08 11:02:32 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/01/17 02:02:56 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include "push_swap.h"
 
-void	sort_2_a(t_stack *a, t_stack *b, t_node *moves)
+static int	find_median_small(t_stack *stack)
 {
-	int	first;
-	int	second;
+	int		buffer[stack->size];
+	t_node	*curr;
+	int		i;
 
-	first = a->top->value;
-	second = a->top->next->value;
-
-	if (first > second)
-		add_move(moves, swap(a, SA), a, b);
-}
-void	sort_3_a(t_stack *a, t_stack *b, t_node *moves)
-{
-	int first;
-	int second;
-	int third;
-
-	first = a->top->value;
-	second = a->top->next->value;
-	third = a->top->next->next->value;
-	if (second > first && second > third && third > first) // 132
+	curr = stack->top;
+	i = 0;
+	while (i < stack->size)
 	{
-		add_move(moves, swap(a, SA), a, b);
-		add_move(moves, rotate(a, RA), a, b);
+		buffer[i] = curr->value;
+		curr = curr->next;
+		i++;
 	}
-	else if (second > first && second > third && first > third) // 231
-		add_move(moves, reverse_rotate(a, RRA), a, b);
-	else if (first > second && first > third && third > second) // 312
-		add_move(moves, rotate(a, RA), a, b);
-	else if (first > second && first > third && second > third) // 321
-	{
-		add_move(moves, rotate(a, RA), a, b);
-		add_move(moves, swap(a, SA), a, b);
-	}
-	else if (third > first && third > second && first > second) // 213
-		add_move(moves, swap(a, SA), a, b);
+	ft_qsort(buffer, 0, stack->size - 1);
+	if (stack->size <= 6)
+		return (buffer[stack->size / 2]);
+	return (buffer[stack->size - 5]);
 }
 
-void	rev_sort_2_b(t_stack *a, t_stack *b, t_node *moves)
+int	divide_a(t_stack *a, t_stack *b, t_node *moves)
 {
-	int first;
-	int second;
-
-	first = b->top->value;
-	second = b->top->next->value;
-	if (first < second)
-		add_move(moves, swap(b, SB), a, b);
-}
-
-void	rev_sort_3_b(t_stack *a, t_stack *b, t_node *moves)
-{
-	int	first;
-	int	second;
-	int	third;
+	t_node	*head;
+	int		median;
+	int		size;
+	int		ret;
 	
-	first = b->top->value;
-	second = b->top->next->value;
-	third = b->top->next->next->value;
-	if (first > second && first > third && third > second) // 312
+	ret = 0;	
+	if (a->size <= 3)
+		return (0);
+	median = find_median_small(a);
+	size = a->size;
+	while (size--)
 	{
-		add_move(moves, reverse_rotate(b, RRB), a, b);
-		add_move(moves, swap(b, SB), a, b);
+		head = a->top;
+		if (head->value < median)
+		{
+			ret++;
+			add_move(moves, push(a, b, PB), a, b);
+		}
+		else
+			add_move(moves, rotate(a, RA), a, b);
 	}
-	if (second > first && second > third && third > first) // 132
-		add_move(moves, rotate(b, RB), a, b);
+	return (ret);
+}
 
-	if (second > first && second > third && first > third) // 231
-		add_move(moves, swap(b, SB), a, b);
-	if (third > first && third > second && second > first) // 123
+int	divide_b(t_stack *a, t_stack *b, t_node *moves)
+{
+	t_node	*head;
+	int		median;
+	int		size;
+	int		ret;
+	
+	ret = 0;	
+	if (b->size <= 3)
+		return (0);
+	median = find_median_small(b);
+	size = b->size;
+	while (size--)
 	{
-		add_move(moves, swap(b, SB), a, b);
-		add_move(moves, reverse_rotate(b, RRB), a, b);
+		head = b->top;
+		if (head->value > median)
+		{
+			ret++;
+			add_move(moves, push(b, a, PA), a, b);
+		}
+		else
+			add_move(moves, rotate(b, RB), a, b);
 	}
-	if (third > first && third > second && first > second) // 213
-		add_move(moves, reverse_rotate(b, RRB), a, b);
+	return (ret);
+}
+
+bool	is_sorted(t_stack *stack)
+{
+	t_node	*head;
+
+	head = stack->top;
+	while (head->next)
+	{
+		if (head > head->next)
+			return (false);
+		head = head->next;
+	}
+	return (true);
+}
+
+bool	is_rev_sorted(t_stack *stack)
+{
+	t_node	*head;
+
+	head = stack->top;
+	while (head->next)
+	{
+		if (head < head->next)
+			return (false);
+		head = head->next;
+	}
+	return (true);
 }

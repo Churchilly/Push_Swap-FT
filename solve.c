@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:37:03 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 01:06:05 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:53:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
 }
 
 void	solve(t_stack *a, t_stack *b, t_node *moves)
-{	
+{
 	if (a->size == 1)
 		return ;
 	if (a->size <= 10 || is_sorted(a))

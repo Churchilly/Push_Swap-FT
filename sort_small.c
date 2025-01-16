@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:39:25 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/16 19:54:39 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 02:02:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	sort_small_a(t_stack *a, t_stack *b, t_node *moves)
 		rev_sort_2_b(a, b, moves);
 	else if (ret == 3)
 		rev_sort_3_b(a, b, moves);
-	if (ret)
-		assemble(a, b, ret, moves);
+	while (ret--)
+		add_move(moves, push(b, a, PA), a, b);
 }
 
 void	sort_small_b(t_stack *a, t_stack *b, t_node *moves)

@@ -6,28 +6,23 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 10:54:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/16 20:01:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:55:14 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-void list_add_back(t_node **head, t_node *new_node) {
+static void list_add_back(t_node **head, t_node *new_node)
+{
     t_node *current;
 
     if (!head || !new_node)
         return;
-
-    if (*head == NULL) {
-        *head = new_node;
-    } else {
-        current = *head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = new_node;
-    }
+    current = *head;
+    while (current->next != NULL)
+        current = current->next;
+    current->next = new_node;
 }
 
 void	add_move(t_node *moves, int move, t_stack *a, t_stack *b)
