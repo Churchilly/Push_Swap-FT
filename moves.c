@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:17:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/16 20:05:15 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:08:43 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	print_double_operation(int operation)
 
 static void print_operation(int operation)
 {
+	if (operation == NULL_OP)
+		return ;
 	if (operation == PA)
 		write(1, "PA\n", 3);
 	if (operation == SA)
@@ -58,6 +60,7 @@ void	print_moves(t_node *moves)
 		{
 			print_double_operation(head_a->value);
 			head_a = head_a->next;
+			head_b->value = NULL_OP;
 			head_b = head_b->next;
 			while (head_b->next && head_b->value < 5)
 				head_b = head_b->next;
