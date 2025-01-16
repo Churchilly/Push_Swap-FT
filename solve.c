@@ -6,13 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:37:03 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 00:59:17 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:06:05 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	fill_position_buffer(t_stack *stack, int *buffer)
+static void	fill_position_buffer(t_stack *stack, int *buffer)
 {
 	t_node	*current;
 	int		i;
@@ -27,7 +27,7 @@ void	fill_position_buffer(t_stack *stack, int *buffer)
 	ft_qsort(buffer, 0, stack->size - 1);
 }
 
-int	position(t_stack *stack, int *buffer)
+static int	position(t_stack *stack, int *buffer)
 {
 	int	pos;
 
@@ -37,8 +37,14 @@ int	position(t_stack *stack, int *buffer)
 	return (pos);	
 }
 
+static void	get_bits(int *max_bits, int size)
+{
+	(*max_bits) = 0;
+	while (size >> *(max_bits))
+		(*max_bits)++;
+}
 
-void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
+static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
 {
 	int	i;
 	int	j;
@@ -47,12 +53,9 @@ void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
 	int buffer[a->size];
 	
 	fill_position_buffer(a, buffer);
-	max_bits = 1;
+	get_bits(&max_bits, a->size);
 	size = a->size;
-	while (size >> max_bits)
-		max_bits++;
 	i = -1;
-	size = a->size;
 	while (++i < max_bits)
 	{
 		j = -1;
