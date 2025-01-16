@@ -26,7 +26,6 @@ typedef struct s_stack
 {
 	t_node *top;
 	int		size;
-	char	name;
 }			t_stack;
 
 void	insert(int value, t_stack *stack);
@@ -59,7 +58,6 @@ void	sort_3_a(t_stack *a, t_stack *b, t_node *moves);
 void	rev_sort_2_b(t_stack *a, t_stack *b, t_node *moves);
 void	rev_sort_3_b(t_stack *a, t_stack *b, t_node *moves);
 
-int		find_median(t_stack *stack);
 int		divide_a(t_stack *a, t_stack *b, t_node *moves);
 int		divide_b(t_stack *a, t_stack *b, t_node *moves);
 void	assemble(t_stack *a, t_stack *b, int size, t_node *moves);
