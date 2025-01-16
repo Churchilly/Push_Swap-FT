@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:02:32 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/15 18:42:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:54:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	find_median_small(t_stack *stack)
 	return (buffer[stack->size - 5]);
 }
 
-int	divide_a(t_stack *a, t_stack *b, t_moves *moves)
+int	divide_a(t_stack *a, t_stack *b, t_node *moves)
 {
 	t_node	*head;
 	int		median;
@@ -51,15 +51,15 @@ int	divide_a(t_stack *a, t_stack *b, t_moves *moves)
 		if (head->value < median)
 		{
 			ret++;
-			add_move(moves, PB, a, b);
+			add_move(moves, push(a, b, PB), a, b);
 		}
 		else
-			add_move(moves, RA, a, b);
+			add_move(moves, rotate(a, RA), a, b);
 	}
 	return (ret);
 }
 
-int	divide_b(t_stack *a, t_stack *b, t_moves *moves)
+int	divide_b(t_stack *a, t_stack *b, t_node *moves)
 {
 	t_node	*head;
 	int		median;
@@ -77,18 +77,18 @@ int	divide_b(t_stack *a, t_stack *b, t_moves *moves)
 		if (head->value > median)
 		{
 			ret++;
-			add_move(moves, PA, a, b);
+			add_move(moves, push(b, a, PA), a, b);
 		}
 		else
-			add_move(moves, RB, a, b);
+			add_move(moves, rotate(b, RB), a, b);
 	}
 	return (ret);
 }
 
-void	assemble(t_stack *a, t_stack *b, int size, t_moves *moves)
+void	assemble(t_stack *a, t_stack *b, int size, t_node *moves)
 {
 	while (size--)
-		add_move(moves, PA, a, b);
+		add_move(moves, push(b, a, PA), a, b);
 }
 
 

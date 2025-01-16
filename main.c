@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/13 12:47:22 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:37:07 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 {
 	t_stack	a;
 	t_stack	b;
+	t_node	moves;
 	t_node *head;
 
 	a.top = NULL;
@@ -26,9 +27,15 @@ int main(int argc, char *argv[])
 	b.size = 0;
 	a.name = 'a';
 	b.name = 'b';
+	moves.value = NULL_OP;
+	moves.next = NULL;
 	insert_input(argc, argv, &a);
-	solve(&a,&b);
-
+	printf("fck\n");
+	solve(&a,&b, &moves);
+	printf("-%d-\n", moves.value);
+	print_moves(&moves);
+	//free_moves(&moves);
+	printf("fuuuuuck\n");
 	head = a.top;
 	while (head)
 	{
@@ -42,4 +49,5 @@ int main(int argc, char *argv[])
 		printf("[%d]\n", head->value);
 		head = head->next;
 	}
+	free_stacks(&a, &b);
 }

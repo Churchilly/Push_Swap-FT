@@ -6,18 +6,17 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:39:25 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/15 17:28:20 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:54:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_small_a(t_stack *a, t_stack *b, t_moves *moves)
+void	sort_small_a(t_stack *a, t_stack *b, t_node *moves)
 {
 	int	ret;
 
 	ret = divide_a(a, b, moves);
-	printf("%d\n", ret);
 	if (a->size == 2)
 		sort_2_a(a, b, moves);
 	else if (a->size == 3)
@@ -30,7 +29,7 @@ void	sort_small_a(t_stack *a, t_stack *b, t_moves *moves)
 		assemble(a, b, ret, moves);
 }
 
-void	sort_small_b(t_stack *a, t_stack *b, t_moves *moves)
+void	sort_small_b(t_stack *a, t_stack *b, t_node *moves)
 {
 	int	ret;
 
@@ -42,10 +41,11 @@ void	sort_small_b(t_stack *a, t_stack *b, t_moves *moves)
 	if (ret == 2)
 		sort_2_a(a, b, moves);
 	while (b->size)
-		add_move(moves, PB, a, b);
+		add_move(moves, push(b, a, PB), a, b);
+	printf("[[%d]]\n", moves->value);
 }
 
-void	sort_small(t_stack *a, t_stack *b, t_moves *moves)
+void	sort_small(t_stack *a, t_stack *b, t_node *moves)
 {
 	int	ret;
 

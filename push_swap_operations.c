@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:37:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/15 17:45:25 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:04:33 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,58 +28,43 @@ void	insert(int value, t_stack *stack)
 	stack->size = stack->size + 1;
 }
 
-void	swap(t_stack *stack, int op)
+int	swap(t_stack *stack, int op)
 {
 	t_node	*first;
 	t_node	*second;
 	
-	if (op == SA)
-		write(1, "sa\n", 3);
-	else if (op == SB)
-		write(1, "sb\n", 3);
-	else if (op == SS)
-		write(1, "ss\n", 3);
 	if (!stack->top || !stack->top->next)
-		return ;
+		return (NULL_OP);
 	first = stack->top;
 	second = stack->top->next;
 	first->next = second->next;
 	second->next = first;
 	stack->top = second;
+	return (op);
 }
 
-void	push(t_stack *stack_take, t_stack *stack_push, int op)
+int	push(t_stack *stack_take, t_stack *stack_push, int op)
 {
 	t_node	*taken;
 	
-	if (op == PA)
-		write(1, "pa\n", 3);
-	else
-		write(1, "pb\n", 3);
 	if (!stack_take->top)
-		return ;
+		return (NULL_OP);
 	taken = stack_take->top;
 	stack_take->top = stack_take->top->next;
 	taken->next = stack_push->top;
 	stack_push->top = taken;
 	stack_take->size = stack_take->size - 1;
 	stack_push->size = stack_push->size + 1;
-	
+	return (op);
 }
 
-void	rotate(t_stack *stack, int op)
+int	rotate(t_stack *stack, int op)
 {
 	t_node	*first;
 	t_node	*last;
 	
-	if (op == RA)
-		write(1, "ra\n", 3);
-	else if (op == RB)
-		write(1, "rb\n", 3);
-	else if (op == RR)
-		write(1, "rr\n", 3);
 	if (!stack->top || !stack->top->next)
-		return ;
+		return (NULL_OP);
 	first = stack->top;
 	last = stack->top;
 	while (last->next)
@@ -87,21 +72,16 @@ void	rotate(t_stack *stack, int op)
 	stack->top = first->next;
 	first->next = NULL;
 	last->next = first;
+	return (op);
 }
 
-void	reverse_rotate(t_stack *stack, int op)
+int	reverse_rotate(t_stack *stack, int op)
 {
 	t_node	*prev;
 	t_node	*curr;
 	
-	if (op == RRA)
-		write(1, "rra\n", 4);
-	else if (op == RRB)
-		write(1, "rrb\n", 4);
-	else if (op == RRR)
-		write(1, "rrr\n", 4);
 	if (!stack->top || !stack->top->next)
-		return ;
+		return (NULL_OP);
 	prev = NULL;
 	curr = stack->top;
 	while (curr->next)
@@ -112,4 +92,5 @@ void	reverse_rotate(t_stack *stack, int op)
 	curr->next = stack->top;
 	stack->top = curr;
 	prev->next = NULL;
+	return (op);
 }
