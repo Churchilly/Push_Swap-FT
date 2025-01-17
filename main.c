@@ -6,11 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 02:47:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:44:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stddef.h>
 
 static void	_init(t_stack *a, t_stack *b, t_node *moves)
 {

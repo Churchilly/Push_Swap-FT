@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:17:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 03:05:51 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:46:18 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	print_double_operation(int operation, t_node **a, t_node **b)
 
 static void	print_operation(int operation, t_node **a, t_node **b)
 {
-	if (operation == NULL_OP)
-		return ;
 	if (operation == PA)
 		write(1, "PA\n", 3);
 	if (operation == SA)

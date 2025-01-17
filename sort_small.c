@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:39:25 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 02:02:21 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:44:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	sort_small_b(t_stack *a, t_stack *b, t_node *moves)
 		sort_2_a(a, b, moves);
 	while (b->size)
 		add_move(moves, push(b, a, PB), a, b);
-	printf("[[%d]]\n", moves->value);
 }
 
 void	sort_small(t_stack *a, t_stack *b, t_node *moves)
