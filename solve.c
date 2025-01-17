@@ -6,17 +6,18 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:37:03 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 01:53:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 02:52:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 static void	fill_position_buffer(t_stack *stack, int *buffer)
 {
 	t_node	*current;
 	int		i;
-	
+
 	current = stack->top;
 	i = -1;
 	while (++i < stack->size)
@@ -34,7 +35,7 @@ static int	position(t_stack *stack, int *buffer)
 	pos = 0;
 	while (buffer[pos] != stack->top->value)
 		pos++;
-	return (pos);	
+	return (pos);
 }
 
 static void	get_bits(int *max_bits, int size)
@@ -50,8 +51,9 @@ static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
 	int	j;
 	int	size;
 	int	max_bits;
-	int buffer[a->size];
-	
+	int	*buffer;
+
+	buffer = malloc(sizeof(int) * a->size);
 	fill_position_buffer(a, buffer);
 	get_bits(&max_bits, a->size);
 	size = a->size;
@@ -69,6 +71,7 @@ static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
 		while (b->size)
 			add_move(moves, push(b, a, PA), a, b);
 	}
+	free(buffer);
 }
 
 void	solve(t_stack *a, t_stack *b, t_node *moves)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operations.c                             :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:37:11 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/16 19:04:33 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 03:08:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	swap(t_stack *stack, int op)
 {
 	t_node	*first;
 	t_node	*second;
-	
+
 	if (!stack->top || !stack->top->next)
 		return (NULL_OP);
 	first = stack->top;
@@ -46,7 +46,7 @@ int	swap(t_stack *stack, int op)
 int	push(t_stack *stack_take, t_stack *stack_push, int op)
 {
 	t_node	*taken;
-	
+
 	if (!stack_take->top)
 		return (NULL_OP);
 	taken = stack_take->top;
@@ -62,7 +62,7 @@ int	rotate(t_stack *stack, int op)
 {
 	t_node	*first;
 	t_node	*last;
-	
+
 	if (!stack->top || !stack->top->next)
 		return (NULL_OP);
 	first = stack->top;
@@ -79,7 +79,7 @@ int	reverse_rotate(t_stack *stack, int op)
 {
 	t_node	*prev;
 	t_node	*curr;
-	
+
 	if (!stack->top || !stack->top->next)
 		return (NULL_OP);
 	prev = NULL;

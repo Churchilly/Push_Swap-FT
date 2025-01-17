@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:51:10 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/05 16:14:01 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 02:18:49 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ static int	partition(int arr[], int low, int high)
 
 void	ft_qsort(int arr[], int low, int high)
 {
-    if (low < high)
-    {
-        int pi = partition(arr, low, high);
+	int	pivot;
 
-        ft_qsort(arr, low, pi - 1);
-        ft_qsort(arr, pi + 1, high);
-    }
+	if (low < high)
+	{
+		pivot = partition(arr, low, high);
+		ft_qsort(arr, low, pivot - 1);
+		ft_qsort(arr, pivot + 1, high);
+	}
 }

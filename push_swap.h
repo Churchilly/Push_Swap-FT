@@ -1,16 +1,26 @@
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 03:15:35 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/01/17 03:17:28 by yusudemi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <stdbool.h>
+# include <stdbool.h>
 
 # define NULL_OP 0
 # define PA 1
 # define SA 2
 # define RA 3
 # define RRA 4
-# define OP_DELIMETER 5
+# define OP_SEP 5
 # define PB 6
 # define SB 7
 # define RB 8
@@ -18,13 +28,13 @@
 
 typedef struct s_node
 {
-    int value;
-    struct s_node *next;
+	int				value;
+	struct s_node	*next;
 }			t_node;
 
 typedef struct s_stack
 {
-	t_node *top;
+	t_node	*top;
 	int		size;
 }			t_stack;
 
@@ -60,7 +70,6 @@ void	rev_sort_3_b(t_stack *a, t_stack *b, t_node *moves);
 
 int		divide_a(t_stack *a, t_stack *b, t_node *moves);
 int		divide_b(t_stack *a, t_stack *b, t_node *moves);
-void	assemble(t_stack *a, t_stack *b, int size, t_node *moves);
 
 bool	is_sorted(t_stack *stack);
 bool	is_rev_sorted(t_stack *stack);

@@ -1,4 +1,4 @@
-NAME = test
+NAME = push_swap
 
 SRCS =	$(wildcard *.c)
 OBJ = $(patsubst %.c, %.o, $(SRCS))

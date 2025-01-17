@@ -6,10 +6,9 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 06:28:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 01:59:07 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 03:13:59 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 #include <unistd.h>
@@ -19,7 +18,7 @@ void	input_error(char *message, t_stack *a)
 {
 	t_node	*tmp;
 	char	*p;
-	
+
 	free_stacks(a, NULL);
 	p = message;
 	while (*p)
@@ -33,7 +32,7 @@ void	input_error(char *message, t_stack *a)
 void	process_error(char *message, t_stack *a, t_stack *b, t_node *moves)
 {
 	char	*p;
-	
+
 	free_stacks(a, b);
 	free_moves(moves);
 	p = message;

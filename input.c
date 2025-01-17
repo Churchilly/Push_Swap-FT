@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 03:59:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/14 17:36:54 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 02:16:46 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-static bool is_num(char *str)
+static bool	is_num(char *str)
 {
 	if (*str == '-' || *str == '+')
 		str++;
@@ -31,7 +31,7 @@ static bool is_num(char *str)
 static bool	is_num_exist(int num, t_stack *a)
 {
 	t_node	*head;
-	
+
 	if (!a->top)
 		return (false);
 	head = a->top;
@@ -49,7 +49,7 @@ static void	push_numbers(char *input, t_stack *a)
 	char	**splitted;
 	int		i;
 	int		num;
-	
+
 	splitted = ft_split(input, ' ');
 	if (!splitted)
 		input_error("split error", NULL);
@@ -70,7 +70,7 @@ static void	push_numbers(char *input, t_stack *a)
 void	insert_input(int argc, char **argv, t_stack *a)
 {
 	int	num;
-	
+
 	if (argc < 2)
 		input_error("Input must be more than zero", NULL);
 	else if (argc == 2)

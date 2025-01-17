@@ -6,42 +6,32 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 01:52:30 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 02:47:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	_init(t_stack *a, t_stack *b, t_node *moves)
+{
+	a->top = NULL;
+	a->size = 0;
+	b->top = NULL;
+	b->size = 0;
+	moves->value = NULL_OP;
+	moves->next = NULL;
+}
 
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	a;
 	t_stack	b;
 	t_node	moves;
-	t_node *head;
 
-	a.top = NULL;
-	b.top = NULL;
-	a.size = 0;
-	b.size = 0;
-	moves.value = NULL_OP;
-	moves.next = NULL;
+	_init(&a, &b, &moves);
 	insert_input(argc, argv, &a);
-	solve(&a,&b, &moves);
+	solve(&a, &b, &moves);
 	print_moves(&moves);
-	head = a.top;
-	while (head)
-	{
-		printf("[%d]\n", head->value);
-		head = head->next;
-	}
-	head = b.top;
-	while (head)
-	{
-		printf("[%d]\n", head->value);
-		head = head->next;
-	}
 	free_stacks(&a, &b);
 	free_moves(&moves);
 }
