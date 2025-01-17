@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:02:32 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 03:13:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static int	find_median_small(t_stack *stack)
+static int	find_median_small(t_stack *stack, t_stack *s_free, t_node *moves)
 {
 	int		*buffer;
 	t_node	*curr;
@@ -22,6 +22,8 @@ static int	find_median_small(t_stack *stack)
 	int		ret;
 
 	buffer = malloc(sizeof(int) * stack->size);
+	if (!buffer)
+		process_error("Malloc error.", stack, s_free, moves);
 	curr = stack->top;
 	i = 0;
 	while (i < stack->size)
@@ -49,7 +51,7 @@ int	divide_a(t_stack *a, t_stack *b, t_node *moves)
 	ret = 0;
 	if (a->size <= 3)
 		return (0);
-	median = find_median_small(a);
+	median = find_median_small(a, b, moves);
 	size = a->size;
 	while (size--)
 	{
@@ -75,7 +77,7 @@ int	divide_b(t_stack *a, t_stack *b, t_node *moves)
 	ret = 0;
 	if (b->size <= 3)
 		return (0);
-	median = find_median_small(b);
+	median = find_median_small(b, a, moves);
 	size = b->size;
 	while (size--)
 	{

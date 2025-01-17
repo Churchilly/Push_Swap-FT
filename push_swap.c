@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 15:44:35 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:50:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 	_init(&a, &b, &moves);
 	insert_input(argc, argv, &a);
 	solve(&a, &b, &moves);
-	print_moves(&moves);
 	free_stacks(&a, &b);
+	print_moves(&moves);
 	free_moves(&moves);
 }

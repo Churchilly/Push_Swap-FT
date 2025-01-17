@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 03:59:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 02:16:46 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 23:07:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 static bool	is_num(char *str)
 {
+	if (*str == 0 || !str)
+		return (false);
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str)
@@ -50,6 +52,8 @@ static void	push_numbers(char *input, t_stack *a)
 	int		i;
 	int		num;
 
+	if (!(*input))
+		input_error("all must be number.", NULL);
 	splitted = ft_split(input, ' ');
 	if (!splitted)
 		input_error("split error", NULL);
@@ -59,10 +63,10 @@ static void	push_numbers(char *input, t_stack *a)
 	while (--i >= 0)
 	{
 		if (!is_num(*splitted))
-			input_error("all must be number", a);
+			input_error("all must be number.", a);
 		num = ft_atoi(splitted[i], a);
 		if (is_num_exist(num, a))
-			input_error("numbers must be different than each other", a);
+			input_error("numbers must be different than each other.", a);
 		insert(num, a);
 	}
 }

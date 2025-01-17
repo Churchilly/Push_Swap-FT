@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:37:03 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 02:52:39 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 23:09:12 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,13 @@ static void	get_bits(int *max_bits, int size)
 		(*max_bits)++;
 }
 
-static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
+static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves, int *buffer)
 {
 	int	i;
 	int	j;
 	int	size;
 	int	max_bits;
-	int	*buffer;
 
-	buffer = malloc(sizeof(int) * a->size);
-	fill_position_buffer(a, buffer);
 	get_bits(&max_bits, a->size);
 	size = a->size;
 	i = -1;
@@ -71,14 +68,20 @@ static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves)
 		while (b->size)
 			add_move(moves, push(b, a, PA), a, b);
 	}
-	free(buffer);
 }
 
 void	solve(t_stack *a, t_stack *b, t_node *moves)
 {
+	int	*buffer;
+
 	if (a->size == 1)
 		return ;
 	if (a->size <= 10 || is_sorted(a))
 		return (sort_small(a, b, moves));
-	sort_stacks(a, b, moves);
+	buffer = malloc(sizeof(int) * a->size);
+	if (!buffer)
+		process_error("Malloc error.", a, b, moves);
+	fill_position_buffer(a, buffer);
+	sort_stacks(a, b, moves, buffer);
+	free(buffer);
 }
