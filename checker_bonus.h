@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:06:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 23:06:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/18 00:02:47 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # define SB 7
 # define RB 8
 # define RRB 9
+# define SS 11
+# define RR 12
+# define RRR 13
+
 
 typedef struct s_node
 {

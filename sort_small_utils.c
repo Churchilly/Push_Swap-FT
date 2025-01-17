@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:02:32 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 22:09:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/18 00:19:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ bool	is_sorted(t_stack *stack)
 	head = stack->top;
 	while (head->next)
 	{
-		if (head > head->next)
+		if (head->value > head->next->value)
 			return (false);
 		head = head->next;
 	}
@@ -114,7 +114,7 @@ bool	is_rev_sorted(t_stack *stack)
 	head = stack->top;
 	while (head->next)
 	{
-		if (head < head->next)
+		if (head->value < head->next->value)
 			return (false);
 		head = head->next;
 	}

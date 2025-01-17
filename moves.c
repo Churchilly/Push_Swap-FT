@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:17:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 15:46:18 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/17 23:58:24 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 static void	print_double_operation(int operation, t_node **a, t_node **b)
 {
 	if (operation == SA)
-		write(1, "SS\n", 3);
+		write(1, "ss\n", 3);
 	if (operation == RA)
-		write(1, "RR\n", 3);
+		write(1, "rr\n", 3);
 	if (operation == RRA)
-		write(1, "RRR\n", 4);
+		write(1, "rrr\n", 4);
 	(*a) = (*a)->next;
 	(*b)->value = NULL_OP;
 	(*b) = (*b)->next;
@@ -31,21 +31,21 @@ static void	print_double_operation(int operation, t_node **a, t_node **b)
 static void	print_operation(int operation, t_node **a, t_node **b)
 {
 	if (operation == PA)
-		write(1, "PA\n", 3);
+		write(1, "pa\n", 3);
 	if (operation == SA)
-		write(1, "SA\n", 3);
+		write(1, "sa\n", 3);
 	if (operation == RA)
-		write(1, "RA\n", 3);
+		write(1, "ra\n", 3);
 	if (operation == RRA)
-		write(1, "RRA\n", 4);
+		write(1, "rra\n", 4);
 	if (operation == PB)
-		write(1, "PB\n", 3);
+		write(1, "pb\n", 3);
 	if (operation == SB)
-		write(1, "SB\n", 3);
+		write(1, "sb\n", 3);
 	if (operation == RB)
-		write(1, "RB\n", 3);
+		write(1, "rb\n", 3);
 	if (operation == RRB)
-		write(1, "RRB\n", 4);
+		write(1, "rrb\n", 4);
 	(*a) = (*a)->next;
 	if ((*b)->next && (*a) == (*b))
 		(*b) = (*b)->next;

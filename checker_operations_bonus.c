@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:57:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 23:08:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/18 00:04:11 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,10 @@ void	make_operation(t_stack *a, t_stack *b, int operation)
 		return (rotate(b));
 	if (operation == RRB)
 		return (reverse_rotate(b));
+	if (operation == SS)
+		return (swap(a), swap(b));
+	if (operation == RR)
+		return (rotate(a), rotate(b));
+	if (operation == RRR)
+		return (reverse_rotate(a), reverse_rotate(b));
 }
