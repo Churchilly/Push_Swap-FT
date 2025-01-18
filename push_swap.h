@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 03:15:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 03:17:28 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/18 03:10:35 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define SB 7
 # define RB 8
 # define RRB 9
-
+#include <stdio.h>
 typedef struct s_node
 {
 	int				value;

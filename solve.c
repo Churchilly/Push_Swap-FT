@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:37:03 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 23:09:12 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/18 04:51:54 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,60 +28,176 @@ static void	fill_position_buffer(t_stack *stack, int *buffer)
 	ft_qsort(buffer, 0, stack->size - 1);
 }
 
-static int	position(t_stack *stack, int *buffer)
+int	get_index(t_stack *a, int pivot)
 {
-	int	pos;
+	int		i;
+	t_node	*head;
 
-	pos = 0;
-	while (buffer[pos] != stack->top->value)
-		pos++;
-	return (pos);
+	i = 0;
+	head = a->top;
+	while (i < a->size)
+	{
+		if (head->value <= pivot)
+			return (i);
+		head = head->next;
+		i++;
+	}
+	return (-1);
 }
 
-static void	get_bits(int *max_bits, int size)
+void	get_pivot(t_stack *a, t_stack *b, t_node *moves, int idx)
 {
-	(*max_bits) = 0;
-	while (size >> *(max_bits))
-		(*max_bits)++;
+	while (idx > 0 && idx < a->size)
+	{
+		if (idx <= (a->size / 2))
+		{
+			add_move(moves, rotate(a, RA), a, b);
+			idx--;
+		}
+		else
+		{
+			add_move(moves, reverse_rotate(a, RRA), a, b);
+			idx++;
+		}
+	}
+}
+
+int get_min_idx(t_stack *stack)
+{
+	int 	ret;
+	int		i;
+	int 	min;
+	t_node *head;
+
+	head = stack->top;
+	min = head->value;
+	i = 0;
+	ret = 0;
+	while (head)
+	{
+		if (head->value < min)
+		{
+			min = head->value;
+			ret = i;
+		}
+		i++;
+		head = head->next;
+	}
+	return (ret);
+}
+
+int get_max_idx(t_stack *stack)
+{
+	int 	ret;
+	int		i;
+	int 	max;
+	t_node *head;
+
+	head = stack->top;
+	max = head->value;
+	i = 0;
+	ret = 0;
+	while (head)
+	{
+		if (head->value > max)
+		{
+			max = head->value;
+			ret = i;
+		}
+		i++;
+		head = head->next;
+	}
+	return (ret);
+}
+
+void	get_biggest_b(t_stack *a, t_stack *b, t_node *moves)
+{
+	int max_b;
+	
+	max_b = get_max_idx(b);
+	while (max_b > 0 && max_b < b->size)
+	{
+		if (max_b <= (b->size / 2))
+		{
+			add_move(moves, rotate(b, RB), a, b);
+			max_b--;
+		}
+		else
+		{
+			add_move(moves, reverse_rotate(b, RRB), a, b);
+			max_b++;
+		}
+	}
 }
 
 static void	sort_stacks(t_stack *a, t_stack *b, t_node *moves, int *buffer)
 {
 	int	i;
-	int	j;
-	int	size;
-	int	max_bits;
+	int idx;
 
-	get_bits(&max_bits, a->size);
-	size = a->size;
-	i = -1;
-	while (++i < max_bits)
+	if (is_sorted(a))
+		return ;
+	if (a->size < 5)
+		return (sort_small_a(a, b, moves));
+	buffer = malloc(sizeof(int) * a->size);
+	if (!buffer)
+		process_error("Malloc error.", a, b, moves);
+	fill_position_buffer(a, buffer);
+	i = 0;
+	while (++i < 6)
 	{
-		j = -1;
-		while (++j < size)
+		idx = get_index(a, buffer[(a->size * i) / 4]);
+		while (idx != -1)
 		{
-			if ((position(a, buffer) >> i) & 1)
-				add_move(moves, rotate(a, RA), a, b);
-			else
-				add_move(moves, push(a, b, PB), a, b);
+			get_pivot(a, b, moves, idx);
+			add_move(moves, push(a, b, PB), a, b);
+			idx = get_index(a, buffer[(a->size * i) / 4]);
 		}
-		while (b->size)
-			add_move(moves, push(b, a, PA), a, b);
 	}
+	free(buffer);
+	sort_stacks(a, b, moves, buffer);
+	while (b->size > 0)
+	{
+		get_biggest_b(a, b, moves);
+		add_move(moves, push(b, a, PA), a, b);
+	}
+}
+
+void	sort_big_stacks(t_stack *a, t_stack *b, t_node *moves, int *buffer)
+{
+	int i;
+	int idx;
+	
+	buffer = malloc(sizeof(int) * a->size);
+	if (!buffer)
+		process_error("Malloc error.", a, b, moves);
+	fill_position_buffer(a, buffer);
+	i = 0;
+	while (++i < 8)
+	{
+		idx = get_index(a, buffer[(a->size * i) / 8]);
+		while (idx != -1)
+		{
+			get_pivot(a, b, moves, idx);
+			add_move(moves, push(a, b, PB), a, b);
+			idx = get_index(a, buffer[(a->size * i) / 8]);
+		}
+	}
+	free(buffer);
+	sort_stacks(a, b, moves, buffer);
 }
 
 void	solve(t_stack *a, t_stack *b, t_node *moves)
 {
 	int	*buffer;
 
-	if (a->size == 1)
+	if (a->size == 1 || is_sorted(a))
 		return ;
-	if (a->size <= 10 || is_sorted(a))
+	if (a->size <= 10)
 		return (sort_small(a, b, moves));
-	buffer = malloc(sizeof(int) * a->size);
-	if (!buffer)
-		process_error("Malloc error.", a, b, moves);
-	fill_position_buffer(a, buffer);
-	sort_stacks(a, b, moves, buffer);
-	free(buffer);
+	if (a->size <= 100)
+		sort_stacks(a, b, moves, buffer);
+	else
+		sort_big_stacks(a, b, moves, buffer);
+	//free(buffer);
 }
