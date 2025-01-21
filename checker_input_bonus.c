@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   checker_input_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 03:59:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 17:49:55 by yusudemi         ###   ########.fr       */
+/*   Created: 2025/01/21 17:37:02 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/01/21 18:37:27 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 #include <stddef.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
+static void	insert(int value, t_stack *stack)
+{
+	t_node	*new;
+
+	new = malloc(sizeof(t_node));
+	if (!new)
+		input_error("malloc error", stack);
+	new->value = value;
+	new->next = stack->top;
+	stack->top = new;
+}
 
 static bool	is_num(char *str)
 {

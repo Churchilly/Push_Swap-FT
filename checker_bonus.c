@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:47:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 15:21:13 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:38:16 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,26 @@ static int	transform_operation(char *operation)
 		return (RRR);
 }
 
-static int	is_sorted(t_stack *stack)
+static int	is_ok(t_stack *a, t_stack *b)
 {
 	t_node	*head;
 
-	head = stack->top;
+	if (b->top)
+		return (write(1, "KO\n", 3));
+	head = a->top;
 	while (head->next)
 	{
 		if (head->value > head->next->value)
 			return (write(1, "KO\n", 3), 0);
 		head = head->next;
 	}
-	return (write(1, "OK\n", 3), 0);
+	return (write(1, "OK\n", 3));
 }
 
 static void	_init(t_stack *a, t_stack *b)
 {
 	a->top = NULL;
-	a->size = 0;
 	b->top = NULL;
-	b->size = 0;
 }
 
 int	main(int argc, char **argv)
@@ -92,5 +92,8 @@ int	main(int argc, char **argv)
 		free(operation);
 		operation = get_next_line(0);
 	}
-	return (is_sorted(&a));
+	free(operation);
+	is_ok(&a, &b);
+	free_stacks(&a, &b);
+	return (0);
 }

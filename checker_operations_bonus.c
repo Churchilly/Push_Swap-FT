@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:57:18 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/18 00:04:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:34:57 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static void	push(t_stack *stack_take, t_stack *stack_push)
 	stack_take->top = stack_take->top->next;
 	taken->next = stack_push->top;
 	stack_push->top = taken;
-	stack_take->size = stack_take->size - 1;
-	stack_push->size = stack_push->size + 1;
 	return ;
 }
 

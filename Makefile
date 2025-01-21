@@ -21,13 +21,12 @@ SRCS =	atoi.c \
 		split.c 
 
 SRCS_BONUS =	checker_bonus.c \
+				checker_atoi_bonus.c \
+				checker_error_bonus.c \
+				checker_free_bonus.c \
 				checker_operations_bonus.c \
-				input.c \
-				atoi.c \
-				error.c \
+				checker_input_bonus.c \
 				split.c \
-				operations.c \
-				free.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
 

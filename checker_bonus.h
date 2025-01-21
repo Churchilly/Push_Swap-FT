@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:06:17 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 15:18:09 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:38:37 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@ typedef struct s_node
 typedef struct s_stack
 {
 	t_node	*top;
-	int		size;
 }			t_stack;
 
 void	insert_input(int argc, char **argv, t_stack *a);
+void	input_error(char *message, t_stack *a);
+void	process_error(char *message, t_stack *a, t_stack *b, t_node *moves);
+void	free_stacks(t_stack *a, t_stack *b);
+int		ft_atoi(const char *str, t_stack *a);
+char	**ft_split(char const *s, char c);
+
 void	make_operation(t_stack *a, t_stack *b, int operation);
 
 #endif
