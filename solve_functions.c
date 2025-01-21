@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 01:46:58 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 02:16:32 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:31:52 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	rarrb_a(t_stack *a, t_stack *b, t_node *moves, int value)
 		add_move(moves, rotate(a, RA), a, b);
 	while (place_b(b, value))
 		add_move(moves, reverse_rotate(b, RRB), a, b);
-	add_move(moves, push(a, b, PB), a, b);	
+	add_move(moves, push(a, b, PB), a, b);
 	return (-1);
 }
 
@@ -28,7 +28,7 @@ int	rrarb_a(t_stack *a, t_stack *b, t_node *moves, int value)
 		add_move(moves, reverse_rotate(a, RRA), a, b);
 	while (place_b(b, value))
 		add_move(moves, rotate(b, RB), a, b);
-	add_move(moves, push(a, b, PB), a, b);	
+	add_move(moves, push(a, b, PB), a, b);
 	return (-1);
 }
 

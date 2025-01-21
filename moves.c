@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:17:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/20 14:10:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:22:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void	print_moves(t_node *moves)
 	head_b = moves->next->next;
 	while (head_a)
 	{
-		if ((head_a->value != PA || head_b->value != PA) &&
-			(head_a->value == head_b->value - OP_SEP || head_b->value == head_a->value - OP_SEP))
+		if ((head_a->value != PA || head_b->value != PA)
+			&& (head_a->value == head_b->value - OP_SEP
+				|| head_b->value == head_a->value - OP_SEP))
 			print_double_operation(head_a->value, &head_a, &head_b);
 		else
 			print_operation(head_a->value, &head_a, &head_b);

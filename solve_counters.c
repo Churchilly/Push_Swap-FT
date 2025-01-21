@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 07:09:27 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 03:17:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:30:50 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	count_double_r(t_stack *main, t_stack *side, int value)
 {
-	int position_ret;
-	int place_ret;
+	int	position_ret;
+	int	place_ret;
 
 	position_ret = position(main->top, value);
 	if (side->name == 'a')
@@ -33,8 +33,8 @@ int	count_double_r(t_stack *main, t_stack *side, int value)
 
 int	count_double_rr(t_stack *main, t_stack *side, int value)
 {
-	int position_ret;
-	int place_ret;
+	int	position_ret;
+	int	place_ret;
 	int	total;
 
 	total = 0;

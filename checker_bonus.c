@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:47:45 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/18 00:20:11 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:21:13 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int	transform_operation(char *operation)
 		return (RRR);
 }
 
-#include <stdio.h>
 static int	is_sorted(t_stack *stack)
 {
 	t_node	*head;
@@ -77,6 +76,7 @@ static void	_init(t_stack *a, t_stack *b)
 	b->top = NULL;
 	b->size = 0;
 }
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
