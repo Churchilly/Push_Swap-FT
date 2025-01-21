@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:02:32 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/18 00:19:50 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:40:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	divide_a(t_stack *a, t_stack *b, t_node *moves)
 	int		ret;
 
 	ret = 0;
-	if (a->size <= 3)
+	if (a->size <= 3 || is_sorted(a))
 		return (0);
 	median = find_median_small(a, b, moves);
 	size = a->size;
@@ -75,7 +75,7 @@ int	divide_b(t_stack *a, t_stack *b, t_node *moves)
 	int		ret;
 
 	ret = 0;
-	if (b->size <= 3)
+	if (b->size <= 3 || is_rev_sorted(b))
 		return (0);
 	median = find_median_small(b, a, moves);
 	size = b->size;
@@ -98,6 +98,8 @@ bool	is_sorted(t_stack *stack)
 	t_node	*head;
 
 	head = stack->top;
+	if (!head)
+		return (true);
 	while (head->next)
 	{
 		if (head->value > head->next->value)

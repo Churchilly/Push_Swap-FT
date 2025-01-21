@@ -11,10 +11,15 @@ SRCS =	atoi.c \
 		operations.c \
 		push_swap.c \
 		solve.c \
+		solve_counters.c \
+		solve_functions.c \
+		solve_double_functions.c \
+		solve_function_utils.c \
 		sort_small.c \
 		sort_small_utils.c \
 		sort_small_functions.c \
-		split.c
+		split.c 
+
 SRCS_BONUS =	checker_bonus.c \
 				checker_operations_bonus.c \
 				input.c \

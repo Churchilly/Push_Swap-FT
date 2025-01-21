@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 02:07:46 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 21:50:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:13:21 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 static void	_init(t_stack *a, t_stack *b, t_node *moves)
 {
+	a->name = 'a';
 	a->top = NULL;
 	a->size = 0;
+	b->name = 'b';
 	b->top = NULL;
 	b->size = 0;
 	moves->value = NULL_OP;

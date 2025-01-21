@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:17:16 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 23:58:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:10:40 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 static void	print_double_operation(int operation, t_node **a, t_node **b)
 {
-	if (operation == SA)
+	if (operation == SA || operation == SB)
 		write(1, "ss\n", 3);
-	if (operation == RA)
+	if (operation == RA || operation == RB)
 		write(1, "rr\n", 3);
-	if (operation == RRA)
+	if (operation == RRA || operation == RRB)
 		write(1, "rrr\n", 4);
 	(*a) = (*a)->next;
 	(*b)->value = NULL_OP;
@@ -57,12 +57,11 @@ void	print_moves(t_node *moves)
 	t_node	*head_b;
 
 	head_a = moves->next;
-	head_b = moves->next;
+	head_b = moves->next->next;
 	while (head_a)
 	{
-		while (head_b->next && head_b->value < OP_SEP)
-			head_b = head_b->next;
-		if (head_a->value != PA && head_a->value == head_b->value - OP_SEP)
+		if ((head_a->value != PA || head_b->value != PA) &&
+			(head_a->value == head_b->value - OP_SEP || head_b->value == head_a->value - OP_SEP))
 			print_double_operation(head_a->value, &head_a, &head_b);
 		else
 			print_operation(head_a->value, &head_a, &head_b);
