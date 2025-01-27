@@ -6,13 +6,24 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:41:59 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 18:37:52 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:14:30 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 #include <stdlib.h>
-#include <stdio.h>
+
+void	free_split(char **split, char *message, t_stack *a)
+{
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	if (message && a)
+		input_error(message, a);
+}
 
 void	free_stacks(t_stack *a, t_stack *b)
 {

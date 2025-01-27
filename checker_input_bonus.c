@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:37:02 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 18:37:27 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:15:03 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,21 @@ static void	push_numbers(char *input, t_stack *a)
 	if (!(*input))
 		input_error("all must be number.", NULL);
 	splitted = ft_split(input, ' ');
-	if (!splitted)
-		input_error("split error", NULL);
+	if (!splitted || !(*splitted))
+		free_split(splitted, "split error", a);
 	i = 0;
 	while (splitted[i])
 		i++;
 	while (--i >= 0)
 	{
-		if (!is_num(*splitted))
-			input_error("all must be number.", a);
+		if (!is_num(splitted[i]))
+			free_split(splitted, "all must be number.", a);
 		num = ft_atoi(splitted[i], a);
 		if (is_num_exist(num, a))
-			input_error("numbers must be different than each other.", a);
+			free_split(splitted, "numbers must not be duplicate.", a);
 		insert(num, a);
 	}
+	free_split(splitted, NULL, NULL);
 }
 
 void	insert_input(int argc, char **argv, t_stack *a)

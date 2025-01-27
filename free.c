@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 01:57:35 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/17 03:15:24 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:52:31 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	free_moves(t_node *moves)
 	t_node	*tmp;
 	t_node	*head;
 
-	if (!moves)
+	if (!(moves->next))
 		return ;
 	head = moves->next;
 	while (head)

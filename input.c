@@ -6,12 +6,12 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 03:59:36 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/21 17:49:55 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:11:45 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stddef.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
 
@@ -46,6 +46,18 @@ static bool	is_num_exist(int num, t_stack *a)
 	return (false);
 }
 
+static void	free_split(char **split, char *message, t_stack *a)
+{
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	if (message && a)
+		input_error(message, a);
+}
+
 static void	push_numbers(char *input, t_stack *a)
 {
 	char	**splitted;
@@ -55,20 +67,21 @@ static void	push_numbers(char *input, t_stack *a)
 	if (!(*input))
 		input_error("all must be number.", NULL);
 	splitted = ft_split(input, ' ');
-	if (!splitted)
-		input_error("split error", NULL);
+	if (!splitted || !(*splitted))
+		free_split(splitted, "split error", a);
 	i = 0;
 	while (splitted[i])
 		i++;
 	while (--i >= 0)
 	{
-		if (!is_num(*splitted))
-			input_error("all must be number.", a);
+		if (!is_num(splitted[i]))
+			free_split(splitted, "all must be number.", a);
 		num = ft_atoi(splitted[i], a);
 		if (is_num_exist(num, a))
-			input_error("numbers must be different than each other.", a);
+			free_split(splitted, "numbers must not be duplicate.", a);
 		insert(num, a);
 	}
+	free_split(splitted, NULL, NULL);
 }
 
 void	insert_input(int argc, char **argv, t_stack *a)
